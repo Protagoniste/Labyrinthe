@@ -9,10 +9,10 @@ La partie connexion du code se subdivise elle-même en deux parties.
 
 2.Ensuite, la deuxième partie du code utilise un socket serveur qui est utilisé pour écouter les connexions entrantes sur un port spécifié. Si une connexion est établie, le serveur reçoit un message du client, qui est analysé à l'aide du module json. Si le message contient une demande de "ping", le serveur envoie une réponse "pong" au client. La boucle continue à écouter les connexions entrantes jusqu'à ce qu'une exception de temps d'attente soit levée.
 
-##Le Jeu
+## Le Jeu
 
 En ce qui concerne la partie du jeu, l'intelligence artifielle cherche les mouvements possibles pour la case actuelle, et entrait une case dans une porte, définie au hasard. L'intelligence artificielle bougera (dans les directions possibles) d'une seule case.
 
 
-##Bibliothèque 
+## Bibliothèque 
 Les bibliothèques utilisées sont : Socket, Json, Sys et Time
