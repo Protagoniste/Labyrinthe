@@ -5,7 +5,7 @@ import json
 
 with socket.socket() as s:
 
-    address = ("localhost", 3000) #cette ligne définit l'adresse IP et le port utilisés pour se connecter au serveur
+    address = ("172.17.10.59", 3000) #cette ligne définit l'adresse IP et le port utilisés pour se connecter au serveur
     port = 4444
 
     sub_message = {  #cette ligne définit un message JSON contenant les informations nécessaires pour s'abonner au serveur
@@ -36,7 +36,7 @@ print("ok")
 
 with socket.socket() as s:
     s.settimeout(0.5)
-    s.bind(("localhost", 4444)) #cette ligne lie le socket à l'adresse IP et au port spécifiés pour écouter les connexions entrantes
+    s.bind(("172.17.10.59", 4444)) #cette ligne lie le socket à l'adresse IP et au port spécifiés pour écouter les connexions entrantes
     print(2)
     s.listen()
     print(3)
@@ -72,7 +72,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as p:
                     if position_actuelle == 0 :
                         if message['state']['board'][int(position_actuelle)]['E'] == True and message['state']['board'][int(position_actuelle+1)]['W'] == True :
                             jouer = {"tile":toile, "gate":"A", "new_position":position_actuelle + 1}
-                            send = {"response":"move", "move":jouer, "message":"GOAT"}
+                            send = {"response":"move", "move":jouer, "message":"FINITO"}
                             client_socket.sendall(json.dumps(send).encode())
                         elif message['state']['board'][int(position_actuelle)]['S'] == True and message['state']['board'][int(position_actuelle+7)]['N'] == True :
                             jouer = {"tile":toile, "gate":"B", "new_position":position_actuelle + 7}
@@ -81,7 +81,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as p:
                     elif position_actuelle in [1,2,3,4,5] :
                         if message['state']['board'][int(position_actuelle)]['E'] == True and message['state']['board'][int(position_actuelle+1)]['W'] == True :
                             jouer = {"tile":toile, "gate":"C", "new_position":position_actuelle + 1}
-                            send = {"response":"move", "move":jouer, "message":"GOAT"}
+                            send = {"response":"move", "move":jouer, "message":"FINITO"}
                             client_socket.sendall(json.dumps(send).encode())
                         elif message['state']['board'][int(position_actuelle)]['S'] == True and message['state']['board'][int(position_actuelle+7)]['N'] == True :
                             jouer = {"tile":toile, "gate":"D", "new_position":position_actuelle + 7}
@@ -89,7 +89,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as p:
                             client_socket.sendall(json.dumps(send).encode())
                         elif message['state']['board'][int(position_actuelle)]['W'] == True and message['state']['board'][int(position_actuelle-1)]['E'] == True :
                             jouer = {"tile":toile, "gate":"E", "new_position":position_actuelle - 1}
-                            send = {"response":"move", "move":jouer, "message":"GOAT"}
+                            send = {"response":"move", "move":jouer, "message":"FINITO"}
                             client_socket.sendall(json.dumps(send).encode())
                     elif position_actuelle == 48 :
                         if message['state']['board'][int(position_actuelle)]['W'] == True and message['state']['board'][int(position_actuelle-1)]['E'] == True :
@@ -98,7 +98,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as p:
                             client_socket.sendall(json.dumps(send).encode())
                         elif message['state']['board'][int(position_actuelle)]['N'] == True and message['state']['board'][int(position_actuelle-7)]['S'] == True :
                             jouer = {"tile":toile, "gate":"G", "new_position":position_actuelle - 7}
-                            send = {"response":"move", "move":jouer, "message":"GOAT"}
+                            send = {"response":"move", "move":jouer, "message":"FINITO"}
                             client_socket.sendall(json.dumps(send).encode())
                     elif position_actuelle in [43,44,45,46,47] :
                         if message['state']['board'][int(position_actuelle)]['E'] == True and message['state']['board'][int(position_actuelle+1)]['W'] == True :
@@ -107,7 +107,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as p:
                             client_socket.sendall(json.dumps(send).encode())
                         elif message['state']['board'][int(position_actuelle)]['N'] == True and message['state']['board'][int(position_actuelle-7)]['S'] == True :
                             jouer = {"tile":toile, "gate":"I", "new_position":position_actuelle - 7}
-                            send = {"response":"move", "move":jouer, "message":"GOAT"}
+                            send = {"response":"move", "move":jouer, "message":"FINITO"}
                             client_socket.sendall(json.dumps(send).encode())
                         elif message['state']['board'][int(position_actuelle)]['W'] == True and message['state']['board'][int(position_actuelle-1)]['E'] == True :
                             jouer = {"tile":toile, "gate":"J", "new_position":position_actuelle - 1}
@@ -116,7 +116,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as p:
                     elif position_actuelle == 6 :
                         if message['state']['board'][int(position_actuelle)]['W'] == True and message['state']['board'][int(position_actuelle-1)]['E'] == True :
                             jouer = {"tile":toile, "gate":"K", "new_position":position_actuelle - 1}
-                            send = {"response":"move", "move":jouer, "message":"GOAT"}
+                            send = {"response":"move", "move":jouer, "message":"FINITO"}
                             client_socket.sendall(json.dumps(send).encode())
                         elif message['state']['board'][int(position_actuelle)]['S'] == True and message['state']['board'][int(position_actuelle+7)]['N'] == True:
                             jouer = {"tile":toile, "gate":"L", "new_position":position_actuelle + 7}
@@ -125,7 +125,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as p:
                     elif position_actuelle == 42 :
                         if message['state']['board'][int(position_actuelle)]['E'] == True and message['state']['board'][int(position_actuelle+7)]['W'] == True :
                             jouer = {"tile":toile, "gate":"B", "new_position":position_actuelle + 1}
-                            send = {"response":"move", "move":jouer, "message":"GOAT"}
+                            send = {"response":"move", "move":jouer, "message":"FINITO"}
                             client_socket.sendall(json.dumps(send).encode())
                         elif message['state']['board'][int(position_actuelle)]['N'] == True and message['state']['board'][int(position_actuelle-7)]['S'] == True :
                             jouer = {"tile":toile, "gate":"C", "new_position":position_actuelle - 7}
@@ -134,7 +134,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as p:
                     elif position_actuelle % 7 == 0 :
                         if message['state']['board'][int(position_actuelle)]['E'] == True and message['state']['board'][int(position_actuelle+7)]['W'] == True :
                             jouer = {"tile":toile, "gate":"D", "new_position":position_actuelle + 1}
-                            send = {"response":"move", "move":jouer, "message":"GOAT"}
+                            send = {"response":"move", "move":jouer, "message":"FINITO"}
                             client_socket.sendall(json.dumps(send).encode())
                         elif message['state']['board'][int(position_actuelle)]['S'] == True and message['state']['board'][int(position_actuelle+7)]['N'] == True :
                             jouer = {"tile":toile, "gate":"E", "new_position":position_actuelle + 7}
@@ -142,7 +142,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as p:
                             client_socket.sendall(json.dumps(send).encode())
                         elif message['state']['board'][int(position_actuelle)]['N'] == True and message['state']['board'][int(position_actuelle-7)]['S'] == True :
                             jouer = {"tile":toile, "gate":"F", "new_position":position_actuelle - 7}
-                            send = {"response":"move", "move":jouer, "message":"GOAT"}
+                            send = {"response":"move", "move":jouer, "message":"FINITO"}
                             client_socket.sendall(json.dumps(send).encode())
                     elif position_actuelle % 7 == 1 or position_actuelle % 7 == 2 or position_actuelle % 7 == 3 or position_actuelle % 7 == 4 or position_actuelle % 7 == 5 :
                         if message['state']['board'][int(position_actuelle)]['E'] == True and message['state']['board'][int(position_actuelle+1)]['W'] == True :
@@ -151,7 +151,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as p:
                             client_socket.sendall(json.dumps(send).encode())
                         elif message['state']['board'][int(position_actuelle)]['W'] == True and message['state']['board'][int(position_actuelle-1)]['E'] == True :
                             jouer = {"tile":toile, "gate":"H", "new_position":position_actuelle - 1}
-                            send = {"response":"move", "move":jouer, "message":"GOAT"}
+                            send = {"response":"move", "move":jouer, "message":"FINITO"}
                             client_socket.sendall(json.dumps(send).encode())
                         elif message['state']['board'][int(position_actuelle)]['S'] == True and message['state']['board'][int(position_actuelle+7)]['N'] == True :
                             jouer = {"tile":toile, "gate":"I", "new_position":position_actuelle + 7}
@@ -159,7 +159,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as p:
                             client_socket.sendall(json.dumps(send).encode())
                         elif message['state']['board'][int(position_actuelle)]['N'] == True and message['state']['board'][int(position_actuelle-7)]['S'] == True :
                             jouer = {"tile":toile, "gate":"J", "new_position":position_actuelle - 7}
-                            send = {"response":"move", "move":jouer, "message":"GOAT"}
+                            send = {"response":"move", "move":jouer, "message":"FINITO"}
                             client_socket.sendall(json.dumps(send).encode())
                     elif position_actuelle % 7 == 6 :
                         if message['state']['board'][int(position_actuelle)]['N'] == True and message['state']['board'][int(position_actuelle-7)]['S'] == True :
@@ -168,7 +168,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as p:
                             client_socket.sendall(json.dumps(send).encode())
                         elif message['state']['board'][int(position_actuelle)]['W'] == True and message['state']['board'][int(position_actuelle-1)]['W'] == True :
                             jouer = {"tile":toile, "gate":"A", "new_position":position_actuelle -1 }
-                            send = {"response":"move", "move":jouer, "message":"GOAT"}
+                            send = {"response":"move", "move":jouer, "message":"FINITO"}
                             client_socket.sendall(json.dumps(send).encode())
                         elif message['state']['board'][int(position_actuelle)]['S'] == True and message['state']['board'][int(position_actuelle+7)]['N'] == True:
                             jouer = {"tile":toile, "gate":"L", "new_position":position_actuelle + 7}
