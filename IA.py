@@ -6,7 +6,7 @@ import json
 with socket.socket() as s:
 
     address = ("172.17.10.59", 3000) #cette ligne définit l'adresse IP et le port utilisés pour se connecter au serveur
-    port = 4444
+    port = 56882
 
     sub_message = {  #cette ligne définit un message JSON contenant les informations nécessaires pour s'abonner au serveur
         "request": "subscribe",
@@ -36,7 +36,7 @@ print("ok")
 
 with socket.socket() as s:
     s.settimeout(0.5)
-    s.bind(("172.17.10.59", 4444)) #cette ligne lie le socket à l'adresse IP et au port spécifiés pour écouter les connexions entrantes
+    s.bind(("", 56882)) #cette ligne lie le socket à l'adresse IP et au port spécifiés pour écouter les connexions entrantes
     print(2)
     s.listen()
     print(3)
@@ -54,13 +54,13 @@ with socket.socket() as s:
 
 #Quelque chose ne fonctionne pas à partir de là
 # Création de la socket et écoute sur le port de souscription
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as p:
-    p.listen()
+#with socket.socket() as p:
+
 
     while True:
-        p.settimeout(5)
+        #s.settimeout(5)
         try: 
-            client_socket, client_address = p.accept()
+            client_socket, client_address = s.accept()
             with client_socket:
                 def reponse() :
                     toile = dict(message['state']['tile'])
@@ -175,9 +175,16 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as p:
                             send = {"response":"move", "move":jouer, "message":"GOAT"}
                             client_socket.sendall(json.dumps(send).encode())
                 print('Connexion de', client_address)
-                data = client_socket.recv(10000).decode()
+                data = b''
+                while True:
+                    data += client_socket.recv(100000)
+                    try:
+                        message = json.loads(data.decode())
+                        break
+                    except:
+                        pass
                 print('Reçu', repr(data))
-                message = json.loads(data)
+                #message = json.loads(data)
                 if message['request'] == 'ping':
                     response = {"response": "pong"}
                     print(response)
